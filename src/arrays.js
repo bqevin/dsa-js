@@ -76,15 +76,15 @@ print("After removing [1] using splice(): ", nums);
 //putting array elements in order
 
 //reversing
+
+nums = [10,12,20,50,5,3];
+
 nums.reverse();
 print("Reversed: ",nums);
 
 //lexicological sorting
 nums.sort();
-print("Sorted* lexicologically: ",nums);
-
-// nums = [3,1,2,100,4,200];
-// nums = [10,12,20,50,5,3];
+print("Sorted lexicologically: ",nums);
 
 //correct sorting of numbers
 function compare(num1,num2){
@@ -92,14 +92,10 @@ function compare(num1,num2){
 }
 
 nums.sort(compare);
-//gives wrong sort order, perhaps due to
-//"messed up" array -- worth investigating
 
-print("Sorted* numerically: ", nums);
-//noticed, 20,50 ignored in the sorting
-//most-likely caused by splice
+print("Sorted numerically: ", nums);
 
-print("Array length? ", nums.length); //number not updated after splice
+print("Array length? ", nums.length);
 
 
 //ITERATOR FUNCTIONS
@@ -297,7 +293,7 @@ points.forEach(displayPts2);
 
 function weekTemps(){
 	this.dataStore = [];
-	
+
 	this.add = function(temp){
 		this.dataStore.push(temp);
 	}
