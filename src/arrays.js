@@ -81,7 +81,7 @@ print("Reversed: ",nums);
 
 //lexicological sorting
 nums.sort();
-print("Sorted lexicologically: ",nums);
+print("Sorted* lexicologically: ",nums);
 
 // nums = [3,1,2,100,4,200];
 // nums = [10,12,20,50,5,3];
@@ -99,7 +99,218 @@ print("Sorted* numerically: ", nums);
 //noticed, 20,50 ignored in the sorting
 //most-likely caused by splice
 
-print(nums.length); //number not updated after splice
+print("Array length? ", nums.length); //number not updated after splice
 
+
+//ITERATOR FUNCTIONS
+
+//Non-array generating iterator functions
+
+//forEach()
+
+function square(num){
+	print(num, num*num);
+}
+
+nums = [1,3,4,5,6];
+
+nums.forEach(square);
+
+//every()
+
+function isEven(num){
+	return num % 2 == 0;
+}
+
+var even = nums.every(isEven);
+if(even){
+	print("All numbers are even");
+}
+else{
+	print("not all numbers are even");
+}
+
+//some
+
+var someEven = nums.some(isEven);
+
+if(someEven){
+	print("some numbers are even");
+}
+else{
+	print("no numbers are even");
+}
+
+//reduce
+
+function add(runningTotal,currentValue){
+	return runningTotal + currentValue;
+}
+
+var sum = nums.reduce(add);
+print("Sum: ", sum);
+
+//using reduce() to perform string concatination
+
+function concat(accString,item){
+	return accString + ", " + item;
+}
+
+var sentence = langs2.reduce(concat);
+
+print(sentence);
+
+//Iterator Functions that Return a New Array
+
+//map
+
+function curve(grade){
+	return grade +=5;
+}
+
+var grades = [77,85,60,30,50];
+
+var newgrades = grades.map(curve);
+
+print("Old grades: ", grades);
+
+print("New grades: ", newgrades);
+
+//string example
+function first(word){
+	return word[0].toUpperCase();
+}
+
+var words = "for your information";
+var acronym = words.split(" ").map(first);
+
+print(acronym.join(""));
+
+//filter
+
+//in ref to the other functions above
+
+var evens = nums.filter(isEven);
+print("Even Numbers: ",evens);
+
+//interesting use of filter
+
+function passing(num){
+	return num >= 60;
+}
+
+var grades = [];
+for(var i=0; i<=20; ++i){
+	grades[i] = Math.floor(Math.random() * 101)
+}
+
+var passGrades = grades.filter(passing);
+
+print("All Grades: ", grades);
+
+print("Passing Grades: ", passGrades);
+
+//Example with string
+//misplell rule: "i before 'e' except after 'c'"
+
+function afterc(str){
+	if(str.indexOf("cie") > -1){
+		return true;
+	}
+	return false;
+}
+
+var words = ["recieve","deceive","percieve","deceit","concieve"];
+var misspelled = words.filter(afterc);
+
+print("Mispelled words: ", misspelled);
+
+//2D arrays
+
+var grades = [[50,67,58],[30,50,76],[90,45.78]];
+
+
+function printAverages(grades){
+	var total = 0;
+	var average = 0.0;
+
+	for(var col=0; col<grades.length; ++col){
+		for(var row=0; row<grades[col].length; ++row){
+			total += grades[row][col];
+		}
+
+		average = total / grades[col].length;
+
+		print("Test " + parseInt(col+1) + " average: " + 
+			average.toFixed(2));
+
+		total = 0;
+		average = 0.0;
+	}
+}
+
+printAverages(grades);
+
+//For Jagged arrays?
+//e.g.
+
+// grades.push([55,20,49,67]);
+grades = [[30,50],[50,67,58],[55,20,49,67]];
+
+//fix run-time error on line 239
+// printAverages(grades);
+
+//Arrays of Objects
+
+function Point(x,y){
+	this.x = x;
+	this.y = y;
+}
+
+function displayPts(arr){
+	for(var i=0; i<arr.length; ++i){
+		print(arr[i].x + ", "+arr[i].y);
+	}
+}
+
+function displayPts2(elem){
+	print(elem.x + ", " + elem.y);
+}
+
+var p1 = new Point(1,2),
+	p2 = new Point(5,10),
+	p3 = new Point(10,3),
+	p4 = new Point(4,4);
+
+var points = [p1,p2,p3,p4];
+
+points.push(new Point(3,3));
+
+points.forEach(displayPts2);
+
+points.shift();
+
+print("After Shift: ");
+points.forEach(displayPts2);
+
+//Arrays in objects
+
+function weekTemps(){
+	this.dataStore = [];
+	this.add = add;
+	this.average = average;
+}
+
+function add(temp){
+	this.dataStore.push(temp);
+}
+
+function average(){
+	var total = 0;
+	for(var i=0; i<this.dataStore.length; ++i){
+		total += this.dataStore[i];
+	}
+	return total / this.dataStore.length;
+}
 
 
