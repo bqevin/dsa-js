@@ -11,6 +11,11 @@ var nums = [1,4,10,11,20];
 //with negative index
 nums.splice(-1,0,[5,10,3]);
 
+nums.splice(-1,0,5,10,3);
+
+nums.push(3,3,5);
+nums.push([3,3,5]);
+
 //If you specify a different number of elements to insert 
 //than the number you're removing, the array will have a 
 //different length at the end of the call.
