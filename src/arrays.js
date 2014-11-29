@@ -297,20 +297,18 @@ points.forEach(displayPts2);
 
 function weekTemps(){
 	this.dataStore = [];
-	this.add = add;
-	this.average = average;
-}
-
-function add(temp){
-	this.dataStore.push(temp);
-}
-
-function average(){
-	var total = 0;
-	for(var i=0; i<this.dataStore.length; ++i){
-		total += this.dataStore[i];
+	
+	this.add = function(temp){
+		this.dataStore.push(temp);
 	}
-	return total / this.dataStore.length;
+
+	this.average = function(){
+		var total = 0;
+		for(var i=0; i<this.dataStore.length; ++i){
+			total += this.dataStore[i];
+		}
+		return total / this.dataStore.length;
+	}
 }
 
 
