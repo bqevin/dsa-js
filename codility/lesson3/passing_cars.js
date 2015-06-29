@@ -1,18 +1,15 @@
 function solution(A) {
     var passing = 0,
-    	i=0, j=0,
+    	i=0, ones=0,
     	size = A.length;
 
-    for(i=0; i < size; i+=1){
+    for(i=size-1; i >= 0; i-=1){
     	if(passing > 1000000000){
     		return -1;
     	}
-    	if(A[i] === 0){
-    		for(j=i+1; j<size; j+=1){
-    			if(A[j]==1){
-    				passing++;
-    			}
-    		}
+    	if(A[i]==1) ones++;
+    	if(A[i]===0){
+    		passing += ones;
     	}
     }
     return passing;
